@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<title>Style With Me | Outfit Finds</title>
+<style>
+:root{--bg:#f6f4ef;--ink:#171717;--muted:#77736c;--line:#e6e1d8;--card:#fff;--accent:#171717}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif}
+header{padding:24px 18px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);background:#fbfaf7;position:sticky;top:0;z-index:5}
+.brand{font-size:18px;font-weight:900;letter-spacing:1.8px}.brand small{display:block;font-size:10px;letter-spacing:3px;color:var(--muted);margin-top:4px}
+button,.btn{border:0;background:var(--ink);color:white;padding:12px 15px;border-radius:4px;font-weight:800;font-size:12px;letter-spacing:1px;cursor:pointer;text-decoration:none;display:inline-flex;justify-content:center;align-items:center}
+button.secondary{background:#e9e5dc;color:#171717}button.outline{background:transparent;color:#171717;border:1px solid #171717}
+main{max-width:1120px;margin:auto;padding:25px 16px 70px}
+.hero{padding:28px 2px 24px}.eyebrow{font-size:10px;letter-spacing:3px;font-weight:800;color:#807b72}.hero h1{font-size:clamp(32px,7vw,62px);line-height:.98;letter-spacing:-2px;margin:12px 0}.hero p{color:var(--muted);max-width:480px;line-height:1.6;font-size:14px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:16px 0}.section-title{font-size:12px;letter-spacing:2px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.outfit-card{background:var(--card);border:1px solid var(--line);cursor:pointer;min-width:0;transition:transform .15s}.outfit-card:hover{transform:translateY(-2px)}
+.outfit-img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#e8e4dc;display:block}.placeholder{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(145deg,#e9e5dc,#d4cec2);color:#777;font-size:12px;letter-spacing:2px}
+.card-info{padding:13px}.card-info h3{font-size:14px;margin:0 0 6px}.card-info p{font-size:11px;color:var(--muted);margin:0}
+.empty{padding:32px 18px;text-align:center;border:1px dashed #c9c2b6;color:var(--muted);line-height:1.7;font-size:13px}
+footer{text-align:center;color:var(--muted);font-size:10px;letter-spacing:2px;padding:24px;border-top:1px solid var(--line)}
+.view{display:none}.view.active{display:block}.back{margin-bottom:18px}
+.detail-head{display:grid;grid-template-columns:1fr;gap:18px}.detail-hero{width:100%;max-height:580px;aspect-ratio:4/4.5;object-fit:cover;background:#e8e4dc}
+.detail-copy h1{font-size:34px;letter-spacing:-1px;margin:8px 0}.detail-copy p{color:var(--muted);line-height:1.6;font-size:13px}
+.products-title{font-size:12px;letter-spacing:2px;margin:28px 0 14px;font-weight:900}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.product{background:white;border:1px solid var(--line);min-width:0}.product img,.product .ph{width:100%;aspect-ratio:1/1;object-fit:cover;background:#e9e5dc;display:flex;align-items:center;justify-content:center;color:#777;font-size:10px;letter-spacing:2px}
+.product-body{padding:12px}.product-body h3{font-size:13px;margin:0 0 6px}.product-body p{font-size:11px;color:var(--muted);margin:0 0 12px}.visit{width:100%;padding:11px}
+dialog{width:min(620px,calc(100% - 24px));max-height:90vh;overflow:auto;border:0;padding:0;background:#fbfaf7;color:var(--ink);box-shadow:0 20px 70px #0004}dialog::backdrop{background:#0008}.modal-head{padding:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-content{padding:18px}.field{margin-bottom:15px}.field label{display:block;font-size:11px;font-weight:800;letter-spacing:1px;margin-bottom:7px}.field input,.field textarea{width:100%;border:1px solid #d8d2c7;background:white;padding:12px;font:inherit;font-size:14px;border-radius:3px}.field textarea{min-height:70px;resize:vertical}.hint{font-size:11px;color:var(--muted);line-height:1.5}.product-editor{padding:14px;background:#f0ede6;margin:12px 0}.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.hidden{display:none!important}
+@media(min-width:700px){header{padding:22px max(28px,calc((100vw - 1120px)/2))}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.hero{padding-top:48px}.detail-head{grid-template-columns:1.1fr 1fr;align-items:start}.detail-copy{padding:30px 10px}.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header><div class="brand">STYLE WITH ME<small>OUTFIT FINDS / SHOP THE LOOK</small></div><button id="addTop">＋ ADD OUTFIT</button></header>
+<main>
+<section id="homeView" class="view active">
+  <div class="hero"><div class="eyebrow">CURATED LOOKS · YOUR STYLE</div><h1>Find your<br>next outfit.</h1><p>Outfit dekho, look open karo, aur har product ko visit karke shopping link par jao.</p></div>
+  <div class="toolbar"><div class="section-title">LATEST OUTFITS</div><div id="count" class="eyebrow">0 LOOKS</div></div>
+  <div id="outfitGrid" class="grid"></div>
+  <div id="emptyState" class="empty">Abhi koi outfit add nahi hua hai.<br><b>＋ ADD OUTFIT</b> dabakar apni outfit photo aur products ke links add karo.</div>
+</section>
+<section id="detailView" class="view">
+  <button class="secondary back" id="backBtn">← ALL OUTFITS</button>
+  <div id="detailContent"></div>
+</section>
+</main>
+<footer>STYLE WITH ME · YOUR PERSONAL OUTFIT CATALOGUE</footer>
+<dialog id="editor">
+ <div class="modal-head"><b id="modalTitle">ADD NEW OUTFIT</b><button class="secondary" id="closeEditor">CLOSE ✕</button></div>
+ <div class="modal-content">
+  <form id="outfitForm">
+   <div class="field"><label>OUTFIT NAME *</label><input id="outfitName" required placeholder="e.g. Old Money Winter Fit"></div>
+   <div class="field"><label>SHORT DESCRIPTION</label><textarea id="outfitDesc" placeholder="e.g. Grey jeans, white shirt and black jacket"></textarea></div>
+   <div class="field"><label>OUTFIT PHOTO *</label><input id="outfitPhoto" type="file" accept="image/*"><div class="hint">Phone gallery se complete outfit ki photo select karo. Image browser mein save hogi.</div><div id="existingPhotoHint" class="hint"></div></div>
+   <div class="section-title" style="margin:22px 0 8px">PRODUCTS IN THIS OUTFIT</div>
+   <div class="hint">Har kapde ki photo, naam aur shopping link add karo. Link http:// ya https:// se shuru hona chahiye.</div>
+   <div id="productEditors"></div>
+   <button type="button" class="secondary" id="addProduct">＋ ADD PRODUCT</button>
+   <div class="modal-actions"><button type="submit">SAVE OUTFIT</button><button type="button" class="outline hidden" id="deleteOutfit">DELETE OUTFIT</button></div>
+   <p class="hint">Note: Ye demo tumhare isi browser/device mein data save karta hai. Public website banane ke liye ise hosting par publish karna hoga.</p>
+  </form>
+ </div>
+</dialog>
+<script>
+const KEY='style_with_me_outfits_v1';
+let outfits=load(), editingId=null, currentId=null, tempProducts=[];
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return []}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(outfits));return true}catch(e){alert('Browser storage full hai. Purani entries ka backup rakho ya kam/smaller photos ke saath try karo.');return false}}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function safe(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function validUrl(s){try{let u=new URL(s);return ['http:','https:'].includes(u.protocol)?u.href:''}catch(e){return ''}}
+function photoMarkup(src,alt,cls=''){return src?`<img class="${cls}" src="${src}" alt="${safe(alt)}">`:`<div class="${cls||'placeholder'}">PHOTO<br>GOES HERE</div>`}
+function renderHome(){
+ const grid=document.getElementById('outfitGrid');grid.innerHTML='';
+ document.getElementById('count').textContent=outfits.length+' LOOKS';
+ document.getElementById('emptyState').classList.toggle('hidden',outfits.length>0);
+ outfits.forEach(o=>{const card=document.createElement('article');card.className='outfit-card';card.innerHTML=`${o.photo?`<img class="outfit-img" src="${o.photo}" alt="${safe(o.name)}">`:`<div class="placeholder">ADD OUTFIT PHOTO</div>`}<div class="card-info"><h3>${safe(o.name)}</h3><p>${(o.products||[]).length} PRODUCTS · VIEW THE LOOK ↗</p></div>`;card.addEventListener('click',()=>showDetail(o.id));card.addEventListener('contextmenu',e=>{e.preventDefault();openEditor(o.id)});grid.appendChild(card)});
+}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function showDetail(oid){
+ const o=outfits.find(x=>x.id===oid);if(!o)return;currentId=oid;
+ const products=(o.products||[]).map(p=>`<article class="product">${p.photo?`<img src="${p.photo}" alt="${safe(p.name)}">`:`<div class="ph">PRODUCT PHOTO</div>`}<div class="product-body"><h3>${safe(p.name)}</h3><p>${safe(p.note||'Shop this item')}</p>${p.url?`<a class="btn visit" href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">VISIT ↗</a>`:`<button class="visit" disabled style="opacity:.5;width:100%">LINK NOT ADDED</button>`}</div></article>`).join('');
+ document.getElementById('detailContent').innerHTML=`<div class="detail-head"><div>${o.photo?`<img class="detail-hero" src="${o.photo}" alt="${safe(o.name)}">`:`<div class="placeholder detail-hero">OUTFIT PHOTO</div>`}</div><div class="detail-copy"><div class="eyebrow">THE COMPLETE LOOK</div><h1>${safe(o.name)}</h1><p>${safe(o.desc||'Explore the products used in this outfit.')}</p><button id="editCurrent">EDIT THIS OUTFIT</button></div></div><div class="products-title">SHOP EACH ITEM · ${(o.products||[]).length} PRODUCTS</div><div class="products">${products||'<div class="empty">Abhi products add nahi hue.</div>'}</div>`;
+ document.getElementById('editCurrent').addEventListener('click',()=>openEditor(oid));showView('detailView');
+}
+function fileToData(file){return new Promise((resolve,reject)=>{if(!file){resolve('');return}const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{try{const max=1000,scale=Math.min(1,max/Math.max(img.width,img.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',0.72))}catch(e){reject(new Error('Photo process nahi ho payi. Doosri photo try karo.'))}};img.onerror=()=>reject(new Error('Photo open nahi ho paayi. Doosri photo try karo.'));img.src=r.result};r.onerror=()=>reject(new Error('Photo read nahi ho paayi.'));r.readAsDataURL(file)})}
+function productEditor(p={}) {
+ const wrap=document.createElement('div');wrap.className='product-editor';
+ wrap.innerHTML=`<div class="field"><label>PRODUCT NAME *</label><input class="pname" required placeholder="e.g. Black leather jacket" value="${safe(p.name||'')}"></div><div class="field"><label>PRODUCT PHOTO</label><input class="pphoto" type="file" accept="image/*"><div class="hint pphotoHint">${p.photo?'Existing photo saved. Nayi photo select karoge to replace hogi.':'Choose a product photo (optional)'}</div></div><div class="field"><label>SHOPPING LINK *</label><input class="purl" type="url" required placeholder="https://..." value="${safe(p.url||'')}"></div><div class="field"><label>SMALL NOTE (OPTIONAL)</label><input class="pnote" placeholder="e.g. Similar style" value="${safe(p.note||'')}"></div><button type="button" class="secondary removeProduct">REMOVE PRODUCT</button>`;
+ wrap.dataset.existingPhoto=p.photo||'';
+ wrap.querySelector('.removeProduct').addEventListener('click',()=>wrap.remove());
+ document.getElementById('productEditors').appendChild(wrap);
+}
+function openEditor(oid=null){
+ editingId=oid;const o=outfits.find(x=>x.id===oid);
+ document.getElementById('outfitForm').reset();document.getElementById('productEditors').innerHTML='';
+ document.getElementById('modalTitle').textContent=o?'EDIT OUTFIT':'ADD NEW OUTFIT';
+ document.getElementById('outfitName').value=o?.name||'';document.getElementById('outfitDesc').value=o?.desc||'';
+ document.getElementById('existingPhotoHint').textContent=o?.photo?'Existing outfit photo saved. Nayi photo select karoge to replace hogi.':'';
+ document.getElementById('deleteOutfit').classList.toggle('hidden',!o);
+ (o?.products||[]).forEach(p=>productEditor(p));if(!o)productEditor();
+ document.getElementById('editor').showModal();
+}
+document.getElementById('addTop').addEventListener('click',()=>openEditor());
+document.getElementById('closeEditor').addEventListener('click',()=>document.getElementById('editor').close());
+document.getElementById('addProduct').addEventListener('click',()=>productEditor());
+document.getElementById('backBtn').addEventListener('click',()=>showView('homeView'));
+document.getElementById('deleteOutfit').addEventListener('click',()=>{if(confirm('Is outfit ko delete karna hai?')){outfits=outfits.filter(o=>o.id!==editingId);save();document.getElementById('editor').close();renderHome();showView('homeView')}});
+document.getElementById('outfitForm').addEventListener('submit',async e=>{
+ e.preventDefault();const btn=e.submitter;btn.disabled=true;btn.textContent='SAVING...';
+ try{
+  const old=outfits.find(x=>x.id===editingId);const outfitPhoto=await fileToData(document.getElementById('outfitPhoto').files[0])||old?.photo||'';
+  if(!outfitPhoto){alert('Outfit photo select karo.');return}
+  const productEls=[...document.querySelectorAll('.product-editor')];const products=[];
+  for(const el of productEls){
+   const name=el.querySelector('.pname').value.trim(), raw=el.querySelector('.purl').value.trim();
+   if(!name&&!raw&&!el.querySelector('.pphoto').files[0])continue;
+   const url=validUrl(raw);if(!name||!url)throw new Error('Har product ka naam aur valid http/https shopping link zaroori hai.');
+   const photo=await fileToData(el.querySelector('.pphoto').files[0])||el.dataset.existingPhoto||'';
+   products.push({id:id(),name,url,photo,note:el.querySelector('.pnote').value.trim()});
+  }
+  const item={id:editingId||id(),name:document.getElementById('outfitName').value.trim(),desc:document.getElementById('outfitDesc').value.trim(),photo:outfitPhoto,products};
+  if(old)outfits=outfits.map(x=>x.id===editingId?item:x);else outfits.unshift(item);
+  if(!save())return;document.getElementById('editor').close();renderHome();if(currentId===item.id)showDetail(item.id);else showView('homeView');
+ }catch(err){alert(err.message||'Save nahi ho paya. Chhoti photo try karo.')}
+ finally{btn.disabled=false;btn.textContent='SAVE OUTFIT'}
+});
+renderHome();
+</script>
+</body>
+</html>
